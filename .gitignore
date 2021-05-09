@@ -1,0 +1,8 @@
+# IDE
+.idea/
+*.iml
+
+# Java, JavaFX, FXGL
+logs/
+system/
+target/
