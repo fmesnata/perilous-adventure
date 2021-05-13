@@ -11,20 +11,22 @@ import static com.almasb.fxgl.dsl.FXGL.image;
 
 public class PlayerComponent extends Component {
 
-    public static final int DASH_VELOCITY = 2000;
+    public static final int RUN_VELOCITY = 300;
+    public static final int JUMP_VELOCITY = -1400;
     private PhysicsComponent physics;
-    private final AnimationChannel animationIdle, animationRun, animationJump;
+    private final AnimationChannel animationIdle, animationRun, animationJump, animationDoubleJump;
     private final AnimatedTexture texture;
     private int jump = 2;
-    private int dash = 1;
 
     public PlayerComponent() {
         Image idle = image("player_idle.png");
         Image run = image("player_run.png");
         Image jump = image("player_jump.png");
+        Image doubleJump = image("player_double_jump.png");
         animationIdle = new AnimationChannel(idle, 11, 64, 64, Duration.seconds(0.6), 0, 10);
         animationRun = new AnimationChannel(run, 12, 64, 64, Duration.seconds(0.6), 0, 11);
         animationJump = new AnimationChannel(jump, 1, 64, 64, Duration.seconds(0.5), 0, 0);
+        animationDoubleJump = new AnimationChannel(doubleJump, 6, 64, 64, Duration.seconds(0.6), 0, 5);
         texture = new AnimatedTexture(animationIdle);
         texture.loop();
     }
@@ -35,7 +37,6 @@ public class PlayerComponent extends Component {
         physics.onGroundProperty().addListener((obs, old, isOnGround) -> {
             if (isOnGround) {
                 jump = 2;
-                dash = 1;
             }
         });
     }
@@ -43,8 +44,14 @@ public class PlayerComponent extends Component {
     @Override
     public void onUpdate(double tpf) {
         if (physics.isMovingY()) {
-            if (texture.getAnimationChannel() != animationJump) {
-                texture.loopAnimationChannel(animationJump);
+            if (jump == 1) {
+                if (texture.getAnimationChannel() != animationJump) {
+                    texture.loopAnimationChannel(animationJump);
+                }
+            } else {
+                if (texture.getAnimationChannel() != animationDoubleJump) {
+                    texture.loopAnimationChannel(animationDoubleJump);
+                }
             }
         } else if (physics.isMovingX()) {
             if (texture.getAnimationChannel() != animationRun) {
@@ -59,34 +66,18 @@ public class PlayerComponent extends Component {
 
     public void right() {
         entity.setScaleX(1);
-        physics.setVelocityX(+300);
+        physics.setVelocityX(RUN_VELOCITY);
     }
 
     public void left() {
         entity.setScaleX(-1);
-        physics.setVelocityX(-300);
+        physics.setVelocityX(-RUN_VELOCITY);
     }
 
     public void jump() {
-        if (true) {
-            physics.setVelocityY(-1400);
+        if (jump > 0) {
+            physics.setVelocityY(JUMP_VELOCITY);
             jump--;
-        }
-    }
-
-    public void rightDash() {
-        if (true) {
-            entity.setScaleX(1);
-            physics.setVelocityX(DASH_VELOCITY);
-            dash--;
-        }
-    }
-
-    public void leftDash() {
-        if (true) {
-            entity.setScaleX(-1);
-            physics.setVelocityX(-DASH_VELOCITY);
-            dash--;
         }
     }
 

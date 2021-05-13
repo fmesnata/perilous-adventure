@@ -10,6 +10,7 @@ import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import fm.fmesnata.component.PlayerComponent;
+import javafx.geometry.Point2D;
 
 import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
 import static com.almasb.fxgl.physics.box2d.dynamics.BodyType.DYNAMIC;
@@ -40,7 +41,7 @@ public class PerilousAdventureFactory implements EntityFactory {
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(DYNAMIC);
         physics.setFixtureDef(new FixtureDef().friction(0));
-        //physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(16, 38), BoundingShape.box(6, 8)));
+        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(2, 60), BoundingShape.box(60, 4)));
 
         return entityBuilder(data)
                 .type(PLAYER)

@@ -37,7 +37,7 @@ public class PerilousAdventureApp extends GameApplication {
 
         Viewport viewport = getGameScene().getViewport();
         viewport.setBounds(0, 0, level.getWidth(), level.getHeight());
-        viewport.bindToEntity(player, getAppWidth() / 2, getAppHeight() / 2);
+        viewport.bindToEntity(player, getAppWidth() / 2.0, getAppHeight() / 2.0);
         viewport.setLazy(true);
     }
 
@@ -81,27 +81,5 @@ public class PerilousAdventureApp extends GameApplication {
                 player.getComponent(PlayerComponent.class).stop();
             }
         }, KeyCode.W);
-        getInput().addAction(new UserAction("rightDash") {
-            @Override
-            protected void onActionBegin() {
-                player.getComponent(PlayerComponent.class).rightDash();
-            }
-
-            @Override
-            protected void onActionEnd() {
-                player.getComponent(PlayerComponent.class).stop();
-            }
-        }, KeyCode.RIGHT);
-        getInput().addAction(new UserAction("leftDash") {
-            @Override
-            protected void onActionBegin() {
-                player.getComponent(PlayerComponent.class).leftDash();
-            }
-
-            @Override
-            protected void onActionEnd() {
-                player.getComponent(PlayerComponent.class).stop();
-            }
-        }, KeyCode.LEFT);
     }
 }
