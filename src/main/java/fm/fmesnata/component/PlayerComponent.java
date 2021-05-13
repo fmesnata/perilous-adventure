@@ -24,7 +24,7 @@ public class PlayerComponent extends Component {
         Image jump = image("player_jump.png");
         animationIdle = new AnimationChannel(idle, 11, 64, 64, Duration.seconds(0.6), 0, 10);
         animationRun = new AnimationChannel(run, 12, 64, 64, Duration.seconds(0.6), 0, 11);
-        animationJump = new AnimationChannel(jump, 1, 64, 64, Duration.seconds(1), 0, 0);
+        animationJump = new AnimationChannel(jump, 1, 64, 64, Duration.seconds(0.5), 0, 0);
         texture = new AnimatedTexture(animationIdle);
         texture.loop();
     }
@@ -59,17 +59,17 @@ public class PlayerComponent extends Component {
 
     public void right() {
         entity.setScaleX(1);
-        physics.setVelocityX(+250);
+        physics.setVelocityX(+300);
     }
 
     public void left() {
         entity.setScaleX(-1);
-        physics.setVelocityX(-250);
+        physics.setVelocityX(-300);
     }
 
     public void jump() {
         if (true) {
-            physics.setVelocityY(-500);
+            physics.setVelocityY(-1400);
             jump--;
         }
     }

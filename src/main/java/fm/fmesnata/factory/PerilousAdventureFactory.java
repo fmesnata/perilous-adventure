@@ -8,12 +8,12 @@ import com.almasb.fxgl.entity.components.CollidableComponent;
 import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
+import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import fm.fmesnata.component.PlayerComponent;
 
 import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
 import static com.almasb.fxgl.physics.box2d.dynamics.BodyType.DYNAMIC;
-import static fm.fmesnata.factory.EntityType.PLATFORM;
-import static fm.fmesnata.factory.EntityType.PLAYER;
+import static fm.fmesnata.factory.EntityType.*;
 
 public class PerilousAdventureFactory implements EntityFactory {
 
@@ -26,10 +26,20 @@ public class PerilousAdventureFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("spike")
+    public Entity newSpike(SpawnData data) {
+        return entityBuilder(data)
+                .type(SPIKE)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new PhysicsComponent())
+                .build();
+    }
+
     @Spawns("player")
     public Entity newPlayer(SpawnData data) {
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(DYNAMIC);
+        physics.setFixtureDef(new FixtureDef().friction(0));
         //physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(16, 38), BoundingShape.box(6, 8)));
 
         return entityBuilder(data)

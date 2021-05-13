@@ -5,6 +5,7 @@ import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import fm.fmesnata.component.PlayerComponent;
 import fm.fmesnata.factory.PerilousAdventureFactory;
@@ -31,17 +32,18 @@ public class PerilousAdventureApp extends GameApplication {
     @Override
     protected void initGame() {
         getGameWorld().addEntityFactory(new PerilousAdventureFactory());
-        setLevelFromMap("level0.tmx");
+        Level level = setLevelFromMap("level0.tmx");
         player = spawn("player", 100, 400);
 
         Viewport viewport = getGameScene().getViewport();
+        viewport.setBounds(0, 0, level.getWidth(), level.getHeight());
         viewport.bindToEntity(player, getAppWidth() / 2, getAppHeight() / 2);
         viewport.setLazy(true);
     }
 
     @Override
     protected void initPhysics() {
-        getPhysicsWorld().setGravity(0, 800);
+        getPhysicsWorld().setGravity(0, 6600);
     }
 
     @Override
