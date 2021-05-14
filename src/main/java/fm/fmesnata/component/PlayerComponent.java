@@ -13,6 +13,7 @@ public class PlayerComponent extends Component {
 
     public static final int RUN_VELOCITY = 300;
     public static final int JUMP_VELOCITY = -1400;
+    public static final int PLAYER_SPRITE_SIZE = 80;
     private PhysicsComponent physics;
     private final AnimationChannel animationIdle, animationRun, animationJump, animationDoubleJump;
     private final AnimatedTexture texture;
@@ -23,10 +24,10 @@ public class PlayerComponent extends Component {
         Image run = image("player_run.png");
         Image jump = image("player_jump.png");
         Image doubleJump = image("player_double_jump.png");
-        animationIdle = new AnimationChannel(idle, 11, 64, 64, Duration.seconds(0.6), 0, 10);
-        animationRun = new AnimationChannel(run, 12, 64, 64, Duration.seconds(0.6), 0, 11);
-        animationJump = new AnimationChannel(jump, 1, 64, 64, Duration.seconds(0.5), 0, 0);
-        animationDoubleJump = new AnimationChannel(doubleJump, 6, 64, 64, Duration.seconds(0.6), 0, 5);
+        animationIdle = new AnimationChannel(idle, 11, PLAYER_SPRITE_SIZE, PLAYER_SPRITE_SIZE, Duration.seconds(0.6), 0, 10);
+        animationRun = new AnimationChannel(run, 12, PLAYER_SPRITE_SIZE, PLAYER_SPRITE_SIZE, Duration.seconds(0.6), 0, 11);
+        animationJump = new AnimationChannel(jump, 1, PLAYER_SPRITE_SIZE, PLAYER_SPRITE_SIZE, Duration.seconds(0.5), 0, 0);
+        animationDoubleJump = new AnimationChannel(doubleJump, 6, PLAYER_SPRITE_SIZE, PLAYER_SPRITE_SIZE, Duration.seconds(0.6), 0, 5);
         texture = new AnimatedTexture(animationIdle);
         texture.loop();
     }
@@ -44,13 +45,13 @@ public class PlayerComponent extends Component {
     @Override
     public void onUpdate(double tpf) {
         if (physics.isMovingY()) {
-            if (jump == 1) {
-                if (texture.getAnimationChannel() != animationJump) {
-                    texture.loopAnimationChannel(animationJump);
-                }
-            } else {
+            if (jump == 0) {
                 if (texture.getAnimationChannel() != animationDoubleJump) {
                     texture.loopAnimationChannel(animationDoubleJump);
+                }
+            } else {
+                if (texture.getAnimationChannel() != animationJump) {
+                    texture.loopAnimationChannel(animationJump);
                 }
             }
         } else if (physics.isMovingX()) {

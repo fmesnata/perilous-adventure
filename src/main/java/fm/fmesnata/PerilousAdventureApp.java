@@ -7,7 +7,10 @@ import com.almasb.fxgl.app.scene.Viewport;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
+import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.physics.HitBox;
 import fm.fmesnata.component.PlayerComponent;
+import fm.fmesnata.factory.EntityType;
 import fm.fmesnata.factory.PerilousAdventureFactory;
 import javafx.scene.input.KeyCode;
 
@@ -27,6 +30,8 @@ public class PerilousAdventureApp extends GameApplication {
         gameSettings.setWidth(1280);
         gameSettings.setHeight(720);
         gameSettings.setApplicationMode(ApplicationMode.DEVELOPER);
+        gameSettings.setFullScreenAllowed(true);
+        gameSettings.setManualResizeEnabled(true);
     }
 
     @Override
