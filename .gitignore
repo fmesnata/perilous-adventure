@@ -6,3 +6,6 @@
 logs/
 system/
 target/
+
+# Mac OS
+.DS_Store
