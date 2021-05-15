@@ -27,16 +27,19 @@ public class PerilousAdventureApp extends GameApplication {
 
     @Override
     protected void initSettings(GameSettings gameSettings) {
+        gameSettings.setTitle("Perilous adventure");
         gameSettings.setWidth(1280);
         gameSettings.setHeight(720);
         gameSettings.setApplicationMode(ApplicationMode.DEVELOPER);
         gameSettings.setFullScreenAllowed(true);
         gameSettings.setManualResizeEnabled(true);
+        gameSettings.setPreserveResizeRatio(true);
     }
 
     @Override
     protected void initGame() {
         getGameWorld().addEntityFactory(new PerilousAdventureFactory());
+        getGameScene().setBackgroundRepeat("background_blue.png");
         Level level = setLevelFromMap("level0.tmx");
         player = spawn("player", 100, 400);
 

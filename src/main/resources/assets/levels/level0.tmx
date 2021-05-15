@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.6.0" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="40" tileheight="40" infinite="0" nextlayerid="4" nextobjectid="11">
  <tileset firstgid="1" name="terrain" tilewidth="40" tileheight="40" tilecount="242" columns="22">
-  <image source="resized_2_5/terrain.png" width="880" height="440"/>
+  <image source="terrain.png" width="880" height="440"/>
  </tileset>
  <tileset firstgid="243" name="spike_idle" tilewidth="40" tileheight="40" tilecount="1" columns="1">
-  <image source="resized_2_5/spike_idle.png" width="40" height="40"/>
+  <image source="spike_idle.png" width="40" height="40"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="32" height="18">
   <data encoding="csv">

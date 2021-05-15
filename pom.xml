@@ -37,6 +37,9 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>fm.fmesnata.PerilousAdventureApp</mainClass>
+                            <launcher>perilous-adventure</launcher>
+                            <jlinkImageName>perilous-adventure</jlinkImageName>
+                            <jlinkZipName>perilous-adventure</jlinkZipName>
                         </configuration>
                     </execution>
                 </executions>
