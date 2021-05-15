@@ -9,6 +9,7 @@ import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
+import fm.fmesnata.component.GoalComponent;
 import fm.fmesnata.component.PlayerComponent;
 import javafx.geometry.Point2D;
 
@@ -32,7 +33,7 @@ public class PerilousAdventureFactory implements EntityFactory {
         return entityBuilder(data)
                 .type(SPIKE)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
                 .build();
     }
 
@@ -41,7 +42,7 @@ public class PerilousAdventureFactory implements EntityFactory {
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(DYNAMIC);
         physics.setFixtureDef(new FixtureDef().friction(0));
-        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(10, 80), BoundingShape.box(70, 4)));
+        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(0, 0), BoundingShape.box(84, 84)));
 
         return entityBuilder(data)
                 .type(PLAYER)
@@ -51,4 +52,15 @@ public class PerilousAdventureFactory implements EntityFactory {
                 .with(new PlayerComponent())
                 .build();
     }
+
+    @Spawns("goal")
+    public Entity newGoal(SpawnData data) {
+        return entityBuilder(data)
+                .type(GOAL)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new GoalComponent())
+                .with(new PhysicsComponent())
+                .build();
+    }
+
 }

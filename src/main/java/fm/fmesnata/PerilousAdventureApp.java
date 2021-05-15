@@ -15,6 +15,8 @@ import fm.fmesnata.factory.PerilousAdventureFactory;
 import javafx.scene.input.KeyCode;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
+import static fm.fmesnata.factory.EntityType.PLAYER;
+import static fm.fmesnata.factory.EntityType.SPIKE;
 
 
 public class PerilousAdventureApp extends GameApplication {
@@ -31,6 +33,7 @@ public class PerilousAdventureApp extends GameApplication {
         gameSettings.setWidth(1280);
         gameSettings.setHeight(720);
         gameSettings.setApplicationMode(ApplicationMode.DEVELOPER);
+        gameSettings.setDeveloperMenuEnabled(true);
         gameSettings.setFullScreenAllowed(true);
         gameSettings.setManualResizeEnabled(true);
         gameSettings.setPreserveResizeRatio(true);
@@ -52,6 +55,12 @@ public class PerilousAdventureApp extends GameApplication {
     @Override
     protected void initPhysics() {
         getPhysicsWorld().setGravity(0, 6600);
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(PLAYER, SPIKE) {
+            @Override
+            protected void onCollisionBegin(Entity a, Entity b) {
+                getGameController().startNewGame();
+            }
+        });
     }
 
     @Override
