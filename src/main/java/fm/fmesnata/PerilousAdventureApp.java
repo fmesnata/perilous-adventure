@@ -8,15 +8,12 @@ import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
-import com.almasb.fxgl.physics.HitBox;
 import fm.fmesnata.component.PlayerComponent;
-import fm.fmesnata.factory.EntityType;
 import fm.fmesnata.factory.PerilousAdventureFactory;
 import javafx.scene.input.KeyCode;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
-import static fm.fmesnata.factory.EntityType.PLAYER;
-import static fm.fmesnata.factory.EntityType.SPIKE;
+import static fm.fmesnata.factory.EntityType.*;
 
 
 public class PerilousAdventureApp extends GameApplication {
@@ -59,6 +56,12 @@ public class PerilousAdventureApp extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity a, Entity b) {
                 getGameController().startNewGame();
+            }
+        });
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(PLAYER, GOAL) {
+            @Override
+            protected void onCollisionBegin(Entity a, Entity b) {
+                System.out.println("win");
             }
         });
     }

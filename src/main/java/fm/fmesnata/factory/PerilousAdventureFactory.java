@@ -59,7 +59,7 @@ public class PerilousAdventureFactory implements EntityFactory {
                 .type(GOAL)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new GoalComponent())
-                .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
                 .build();
     }
 
