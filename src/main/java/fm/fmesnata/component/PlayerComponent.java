@@ -11,8 +11,8 @@ import static com.almasb.fxgl.dsl.FXGL.image;
 
 public class PlayerComponent extends Component {
 
-    public static final int RUN_VELOCITY = 300;
-    public static final int JUMP_VELOCITY = -1400;
+    public static final int RUN_VELOCITY = 250;
+    public static final int JUMP_VELOCITY = -1000;
     public static final int PLAYER_SPRITE_SIZE = 64;
     private PhysicsComponent physics;
     private final AnimationChannel animationIdle, animationRun, animationJump, animationDoubleJump;

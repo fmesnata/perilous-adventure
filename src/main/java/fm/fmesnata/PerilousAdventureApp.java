@@ -51,7 +51,7 @@ public class PerilousAdventureApp extends GameApplication {
 
     @Override
     protected void initPhysics() {
-        getPhysicsWorld().setGravity(0, 6600);
+        getPhysicsWorld().setGravity(0, 4000);
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(PLAYER, SPIKE) {
             @Override
             protected void onCollisionBegin(Entity a, Entity b) {
