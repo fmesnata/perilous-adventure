@@ -13,7 +13,7 @@ public class PlayerComponent extends Component {
 
     public static final int RUN_VELOCITY = 300;
     public static final int JUMP_VELOCITY = -1400;
-    public static final int PLAYER_SPRITE_SIZE = 80;
+    public static final int PLAYER_SPRITE_SIZE = 64;
     private PhysicsComponent physics;
     private final AnimationChannel animationIdle, animationRun, animationJump, animationDoubleJump;
     private final AnimatedTexture texture;

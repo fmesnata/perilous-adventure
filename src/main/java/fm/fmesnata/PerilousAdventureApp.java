@@ -28,7 +28,7 @@ public class PerilousAdventureApp extends GameApplication {
     protected void initSettings(GameSettings gameSettings) {
         gameSettings.setTitle("Perilous adventure");
         gameSettings.setWidth(1280);
-        gameSettings.setHeight(720);
+        gameSettings.setHeight(704);
         gameSettings.setApplicationMode(ApplicationMode.DEVELOPER);
         gameSettings.setDeveloperMenuEnabled(true);
         gameSettings.setFullScreenAllowed(true);

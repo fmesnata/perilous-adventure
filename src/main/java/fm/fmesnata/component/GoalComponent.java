@@ -16,7 +16,7 @@ public class GoalComponent extends Component {
 
     public GoalComponent() {
         Image idle = image("terrain_goal.png");
-        AnimationChannel animationIdle = new AnimationChannel(idle, 10, 160, 160, Duration.seconds(0.6), 0, 9);
+        AnimationChannel animationIdle = new AnimationChannel(idle, 10, 128, 128, Duration.seconds(0.6), 0, 9);
         texture = new AnimatedTexture(animationIdle);
         texture.loop();
     }

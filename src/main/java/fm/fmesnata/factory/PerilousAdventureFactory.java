@@ -42,11 +42,11 @@ public class PerilousAdventureFactory implements EntityFactory {
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(DYNAMIC);
         physics.setFixtureDef(new FixtureDef().friction(0));
-        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(0, 0), BoundingShape.box(84, 84)));
+        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(0, 0), BoundingShape.box(64, 64)));
 
         return entityBuilder(data)
                 .type(PLAYER)
-                .bbox(BoundingShape.box(80,80))
+                .bbox(BoundingShape.box(64,64))
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new PlayerComponent())
