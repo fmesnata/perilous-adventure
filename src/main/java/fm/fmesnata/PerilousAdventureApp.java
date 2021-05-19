@@ -40,7 +40,7 @@ public class PerilousAdventureApp extends GameApplication {
     protected void initGame() {
         getGameWorld().addEntityFactory(new PerilousAdventureFactory());
         getGameScene().setBackgroundRepeat("background_blue.png");
-        Level level = setLevelFromMap("level0.tmx");
+        Level level = setLevelFromMap("level1.tmx");
         player = spawn("player", 100, 400);
 
         Viewport viewport = getGameScene().getViewport();
