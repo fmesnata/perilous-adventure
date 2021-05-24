@@ -9,6 +9,7 @@ import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
 import fm.fmesnata.component.PlayerComponent;
+import fm.fmesnata.component.RockHeadComponent;
 import fm.fmesnata.factory.PerilousAdventureFactory;
 import javafx.scene.input.KeyCode;
 
@@ -62,6 +63,20 @@ public class PerilousAdventureApp extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity a, Entity b) {
                 System.out.println("win");
+            }
+        });
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(PLAYER, ROCK_HEAD_DETECTOR) {
+            @Override
+            protected void onCollisionBegin(Entity a, Entity b) {
+                Entity entity = getGameWorld().getEntitiesByType(ROCK_HEAD).get(0);
+                entity.getComponent(RockHeadComponent.class).fall();
+            }
+        });
+        getPhysicsWorld().addCollisionHandler(new CollisionHandler(ROCK_HEAD, PLATFORM) {
+            @Override
+            protected void onCollisionBegin(Entity a, Entity b) {
+                Entity entity = getGameWorld().getEntitiesByType(ROCK_HEAD).get(0);
+                entity.getComponent(RockHeadComponent.class).stop();
             }
         });
     }

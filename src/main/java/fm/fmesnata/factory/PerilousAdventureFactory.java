@@ -15,7 +15,7 @@ import fm.fmesnata.component.RockHeadComponent;
 import javafx.geometry.Point2D;
 
 import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
-import static com.almasb.fxgl.physics.box2d.dynamics.BodyType.DYNAMIC;
+import static com.almasb.fxgl.physics.box2d.dynamics.BodyType.*;
 import static fm.fmesnata.factory.EntityType.*;
 
 public class PerilousAdventureFactory implements EntityFactory {
@@ -26,6 +26,7 @@ public class PerilousAdventureFactory implements EntityFactory {
                 .type(PLATFORM)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .with(new PhysicsComponent())
+                .with(new CollidableComponent(true))
                 .build();
     }
 
@@ -40,9 +41,13 @@ public class PerilousAdventureFactory implements EntityFactory {
 
     @Spawns("rockHead")
     public Entity newRockHead(SpawnData data) {
+        PhysicsComponent physics = new PhysicsComponent();
+        physics.setBodyType(KINEMATIC);
+        physics.addGroundSensor(new HitBox("GROUND_SENSOR_RO", new Point2D(10, 10), BoundingShape.box(84, 94)));
         return entityBuilder(data)
                 .type(ROCK_HEAD)
-                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .bbox(new HitBox(new Point2D(10, 10), BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(physics)
                 .with(new RockHeadComponent())
                 .with(new CollidableComponent(true))
                 .build();
@@ -74,4 +79,12 @@ public class PerilousAdventureFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("blockHeadDetector")
+    public Entity newBlockHeadDetector(SpawnData data) {
+        return entityBuilder(data)
+                .type(ROCK_HEAD_DETECTOR)
+                .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .with(new CollidableComponent(true))
+                .build();
+    }
 }

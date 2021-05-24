@@ -2,6 +2,7 @@ package fm.fmesnata.component;
 
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
+import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.scene.image.Image;
@@ -24,5 +25,23 @@ public class RockHeadComponent extends Component {
     @Override
     public void onAdded() {
         entity.getViewComponent().addChild(texture);
+        physics.onGroundProperty().addListener((obs, old, isOnGround) -> {
+            if (isOnGround) {
+                System.out.println("on ground");
+            }
+        });
+    }
+
+    @Override
+    public void onUpdate(double tpf) {
+    }
+
+    public void fall() {
+        physics.setVelocityY(300);
+    }
+
+    public void stop() {
+        System.out.println("stop");
+        physics.setVelocityY(0);
     }
 }
