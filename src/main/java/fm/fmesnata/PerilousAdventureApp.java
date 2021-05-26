@@ -69,7 +69,9 @@ public class PerilousAdventureApp extends GameApplication {
             @Override
             protected void onCollisionBegin(Entity a, Entity b) {
                 Entity entity = getGameWorld().getEntitiesByType(ROCK_HEAD).get(0);
-                entity.getComponent(RockHeadComponent.class).fall();
+                if (!entity.getComponent(RockHeadComponent.class).onGround) {
+                    entity.getComponent(RockHeadComponent.class).fall();
+                }
             }
         });
         getPhysicsWorld().addCollisionHandler(new CollisionHandler(ROCK_HEAD, PLATFORM) {
