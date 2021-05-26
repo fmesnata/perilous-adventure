@@ -26,6 +26,12 @@ public class PerilousAdventureApp extends GameApplication {
     }
 
     @Override
+    protected void onPreInit() {
+        getSettings().setGlobalMusicVolume(0.25);
+        loopBGM("tribal.wav");
+    }
+
+    @Override
     protected void initSettings(GameSettings gameSettings) {
         gameSettings.setTitle("Perilous adventure");
         gameSettings.setWidth(1280);
