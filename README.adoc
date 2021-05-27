@@ -1,0 +1,11 @@
+= Perilous adventure
+
+_(Work in progress)_
+
+image::Capture.png[]
+
+Platform game powered by http://almasb.github.io/FXGL/[FXGL game engine]
+
+Graphic assets come from https://pixelfrog-assets.itch.io/[]
+
+Music comes from https://opengameart.org/[]
